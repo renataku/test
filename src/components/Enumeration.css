@@ -1,0 +1,36 @@
+.enumeration {
+  margin: 0px auto;
+  width: 90vw;
+}
+
+.enumeration-image {
+  width: 100px;
+  height: 100px;
+}
+
+.pagination {
+  padding-top: 10px;
+}
+
+.table-container {
+  overflow-y: auto;
+  max-height: 78vh;
+}
+.table thead {
+  position: sticky;
+  position: -webkit-sticky;
+  background-color: white;
+  top: 0px;
+}
+
+.page-item:hover {
+  cursor: pointer;
+}
+
+.page-item:hover {
+  cursor: pointer;
+}
+
+.page-item.disabled:hover {
+  cursor: auto;
+}

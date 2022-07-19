@@ -1,0 +1,62 @@
+.layout > header {
+  background-color: grey;
+  width: 100Į;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 90px;
+  padding-right: 90px;
+  z-index: 2;
+}
+
+.layout > footer {
+  background-color: grey;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  color: white;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+}
+
+.layout header ul {
+  display: flex;
+  list-style-type: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* margin: 0; */
+}
+
+.layout header ul li {
+  padding-left: 18px;
+}
+
+.content {
+  margin-top: 70px;
+  /* margin-left: 50px;
+  margin-right: 50px; */
+}
+
+header .logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+header .logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
