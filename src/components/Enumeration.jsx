@@ -5,6 +5,18 @@ const About = () => {
   const [items, setItems] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount] = useState(42);
+  const [columns, setColumns] = useState({
+    id: true,
+    name: true,
+    status: true,
+    species: true,
+    type: true,
+    gender: true,
+    origin: true,
+    location: true,
+    image: true,
+  });
+
   useEffect(() => {
     fetch(`https://rickandmortyapi.com/api/character/?page=${currentPage}`, {
       method: "GET",
@@ -12,9 +24,19 @@ const About = () => {
       .then((res) => res.json())
       .then((res) => {
         setItems(res.results);
-        console.log(res.results);
       });
-  }, [currentPage]);
+  }, [currentPage, columns]);
+
+  const handleCheckbox = (e) => {
+    console.log("e.target.value", e.target.value);
+    console.log("e.target.checked", e.target.checked);
+    console.log("columns", columns);
+
+    setColumns((columns) => ({
+      ...columns,
+      [e.target.value]: e.target.checked,
+    }));
+  };
 
   const pagination = (pageNo) => {
     if (pageNo < 1 || pageNo > pageCount) return;
@@ -23,8 +45,84 @@ const About = () => {
 
   return (
     <div className="enumeration">
-      <h3>Enumeration</h3>
+      <div className="enumeration-header">
+        <h3>Enumeration</h3>
 
+        <div className="dropDown">
+          Choose columns: id{" "}
+          <input
+            onChange={handleCheckbox}
+            type="checkbox"
+            name="columns"
+            value="id"
+            checked={columns.id}
+          />
+          name{" "}
+          <input
+            onChange={handleCheckbox}
+            type="checkbox"
+            name="columns"
+            value="name"
+            checked={columns.name}
+          />
+          status{" "}
+          <input
+            onChange={handleCheckbox}
+            type="checkbox"
+            name="columns"
+            value="status"
+            checked={columns.status}
+          />
+          species{" "}
+          <input
+            onChange={handleCheckbox}
+            type="checkbox"
+            name="columns"
+            value="species"
+            checked={columns.species}
+          />
+          type{" "}
+          <input
+            onChange={handleCheckbox}
+            type="checkbox"
+            name="columns"
+            value="type"
+            checked={columns.type}
+          />
+          gender{" "}
+          <input
+            onChange={handleCheckbox}
+            type="checkbox"
+            name="columns"
+            value="gender"
+            checked={columns.gender}
+          />
+          origin{" "}
+          <input
+            onChange={handleCheckbox}
+            type="checkbox"
+            name="columns"
+            value="origin"
+            checked={columns.origin}
+          />
+          location{" "}
+          <input
+            onChange={handleCheckbox}
+            type="checkbox"
+            name="columns"
+            value="location"
+            checked={columns.location}
+          />
+          image{" "}
+          <input
+            onChange={handleCheckbox}
+            type="checkbox"
+            name="columns"
+            value="image"
+            checked={columns.image}
+          />
+        </div>
+      </div>
       <div className="table-container">
         {!items ? (
           ""
@@ -32,31 +130,35 @@ const About = () => {
           <table className="table">
             <thead>
               <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>status</th>
-                <th>species</th>
-                <th>type</th>
-                <th>gender</th>
-                <th>origin</th>
-                <th>location</th>
-                <th>image</th>
+                {columns.id ? <th>id</th> : ""}
+                {columns.name ? <th>name</th> : ""}
+                {columns.status ? <th>status</th> : ""}
+                {columns.species ? <th>species</th> : ""}
+                {columns.type ? <th>type</th> : ""}
+                {columns.gender ? <th>gender</th> : ""}
+                {columns.origin ? <th>origin</th> : ""}
+                {columns.location ? <th>location</th> : ""}
+                {columns.image ? <th>image</th> : ""}
               </tr>
             </thead>
             <tbody>
               {items.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.id}</td>
-                  <td>{item.name}</td>
-                  <td>{item.status}</td>
-                  <td>{item.species}</td>
-                  <td>{item.type}</td>
-                  <td>{item.gender}</td>
-                  <td>{item.origin.name}</td>
-                  <td>{item.location.name}</td>
-                  <td>
-                    <img src={item.image} className="enumeration-image"></img>
-                  </td>
+                  {columns.id ? <td>{item.id}</td> : ""}
+                  {columns.name ? <td>{item.name}</td> : ""}
+                  {columns.status ? <td>{item.status}</td> : ""}
+                  {columns.species ? <td>{item.species}</td> : ""}
+                  {columns.type ? <td>{item.type}</td> : ""}
+                  {columns.gender ? <td>{item.gender}</td> : ""}
+                  {columns.origin ? <td>{item.origin.name}</td> : ""}
+                  {columns.location ? <td>{item.location.name}</td> : ""}
+                  {columns.image ? (
+                    <td>
+                      <img src={item.image} className="enumeration-image"></img>
+                    </td>
+                  ) : (
+                    ""
+                  )}
                 </tr>
               ))}
             </tbody>
