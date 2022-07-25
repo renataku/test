@@ -3,6 +3,7 @@ import "./Enumeration.css";
 
 const About = () => {
   const [items, setItems] = useState("");
+  const [isChooserVisible, setIsChooserVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount] = useState(42);
   const [columns, setColumns] = useState({
@@ -28,10 +29,6 @@ const About = () => {
   }, [currentPage, columns]);
 
   const handleCheckbox = (e) => {
-    console.log("e.target.value", e.target.value);
-    console.log("e.target.checked", e.target.checked);
-    console.log("columns", columns);
-
     setColumns((columns) => ({
       ...columns,
       [e.target.value]: e.target.checked,
@@ -48,79 +45,90 @@ const About = () => {
       <div className="enumeration-header">
         <h3>Enumeration</h3>
 
-        <div className="dropDown">
-          Choose columns: id{" "}
-          <input
-            onChange={handleCheckbox}
-            type="checkbox"
-            name="columns"
-            value="id"
-            checked={columns.id}
-          />
-          name{" "}
-          <input
-            onChange={handleCheckbox}
-            type="checkbox"
-            name="columns"
-            value="name"
-            checked={columns.name}
-          />
-          status{" "}
-          <input
-            onChange={handleCheckbox}
-            type="checkbox"
-            name="columns"
-            value="status"
-            checked={columns.status}
-          />
-          species{" "}
-          <input
-            onChange={handleCheckbox}
-            type="checkbox"
-            name="columns"
-            value="species"
-            checked={columns.species}
-          />
-          type{" "}
-          <input
-            onChange={handleCheckbox}
-            type="checkbox"
-            name="columns"
-            value="type"
-            checked={columns.type}
-          />
-          gender{" "}
-          <input
-            onChange={handleCheckbox}
-            type="checkbox"
-            name="columns"
-            value="gender"
-            checked={columns.gender}
-          />
-          origin{" "}
-          <input
-            onChange={handleCheckbox}
-            type="checkbox"
-            name="columns"
-            value="origin"
-            checked={columns.origin}
-          />
-          location{" "}
-          <input
-            onChange={handleCheckbox}
-            type="checkbox"
-            name="columns"
-            value="location"
-            checked={columns.location}
-          />
-          image{" "}
-          <input
-            onChange={handleCheckbox}
-            type="checkbox"
-            name="columns"
-            value="image"
-            checked={columns.image}
-          />
+        <div className="column-chooser">
+          <div
+            className="chooser-switcher"
+            onClick={() => setIsChooserVisible(!isChooserVisible)}
+          >
+            {isChooserVisible ? "-" : "+"}
+          </div>
+          <p>Choose columns:</p>
+          <div
+            className={isChooserVisible ? "chooser-active" : "chooser-inactive"}
+          >
+            <span>id </span>
+            <input
+              onChange={handleCheckbox}
+              type="checkbox"
+              name="columns"
+              value="id"
+              checked={columns.id}
+            />
+            <span className="chooser-label">name </span>
+            <input
+              onChange={handleCheckbox}
+              type="checkbox"
+              name="columns"
+              value="name"
+              checked={columns.name}
+            />
+            <span className="chooser-label">status </span>
+            <input
+              onChange={handleCheckbox}
+              type="checkbox"
+              name="columns"
+              value="status"
+              checked={columns.status}
+            />
+            <span className="chooser-label">species </span>
+            <input
+              onChange={handleCheckbox}
+              type="checkbox"
+              name="columns"
+              value="species"
+              checked={columns.species}
+            />
+            <span className="chooser-label">type </span>
+            <input
+              onChange={handleCheckbox}
+              type="checkbox"
+              name="columns"
+              value="type"
+              checked={columns.type}
+            />
+            <span className="chooser-label">gender </span>
+            <input
+              onChange={handleCheckbox}
+              type="checkbox"
+              name="columns"
+              value="gender"
+              checked={columns.gender}
+            />
+            <span className="chooser-label">origin </span>
+            <input
+              onChange={handleCheckbox}
+              type="checkbox"
+              name="columns"
+              value="origin"
+              checked={columns.origin}
+            />
+            <span className="chooser-label">location </span>
+            <input
+              onChange={handleCheckbox}
+              type="checkbox"
+              name="columns"
+              value="location"
+              checked={columns.location}
+            />
+            <span className="chooser-label">image </span>
+            <input
+              onChange={handleCheckbox}
+              type="checkbox"
+              name="columns"
+              value="image"
+              checked={columns.image}
+            />
+          </div>
         </div>
       </div>
       <div className="table-container">

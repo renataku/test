@@ -40,3 +40,37 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.column-chooser {
+  position: relative;
+}
+
+.column-chooser p {
+  margin: 0 24px 4px 0;
+}
+
+.chooser-switcher {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-color: lightgrey;
+  text-align: center;
+}
+
+.chooser-switcher:hover {
+  cursor: pointer;
+}
+
+.chooser-label {
+  padding-left: 10px;
+}
+
+.chooser-inactive {
+  display: none;
+}
+
+.chooser-active {
+  display: block;
+}
